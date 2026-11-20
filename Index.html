@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101116">
+    <meta name="description" content="SonicVault: sua biblioteca multimídia pessoal.">
+    <title>SonicVault</title>
+    <link rel="stylesheet" href="Style.css">
+    <script type="module" src="JS/app.js"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <!-- SIDEBAR: navegação principal -->
+        <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
+            <div class="sidebar-header">
+                <a class="brand" href="#dashboard" aria-label="SonicVault, página inicial">
+                    <span class="brand-icon" aria-hidden="true">SV</span>
+                    <span class="brand-name">SonicVault</span>
+                </a>
+
+                <!-- O comportamento de recolher será ligado ao JavaScript em uma etapa posterior. -->
+                <button
+                    class="sidebar-toggle"
+                    id="sidebarToggle"
+                    type="button"
+                    aria-label="Recolher ou expandir menu"
+                    aria-expanded="true"
+                    aria-controls="sidebarNavigation"
+                >
+                    <span aria-hidden="true">☰</span>
+                </button>
+            </div>
+
+            <nav class="sidebar-navigation" id="sidebarNavigation" aria-label="Seções">
+                <p class="navigation-heading">ESPAÇO</p>
+
+                <button class="nav-item active" type="button" data-nav="dashboard" aria-current="page">
+                    <span class="nav-icon" aria-hidden="true">⌂</span>
+                    <span class="nav-label">Dashboard</span>
+                </button>
+
+                <button class="nav-item" type="button" data-nav="music">
+                    <span class="nav-icon" aria-hidden="true">♫</span>
+                    <span class="nav-label">Música</span>
+                </button>
+
+                <button class="nav-item" type="button" data-nav="manga" aria-disabled="true">
+                    <span class="nav-icon" aria-hidden="true">▤</span>
+                    <span class="nav-label">Mangás</span>
+                    <span class="nav-status">Em breve</span>
+                </button>
+
+                <button class="nav-item" type="button" data-nav="youtube" aria-disabled="true">
+                    <span class="nav-icon" aria-hidden="true">▷</span>
+                    <span class="nav-label">YouTube</span>
+                    <span class="nav-status">Em breve</span>
+                </button>
+
+                <p class="navigation-heading">BIBLIOTECA MUSICAL</p>
+                <div class="library-navigation" aria-label="Biblioteca musical">
+                    <button id="songsBtn" class="nav-item" type="button">
+                        <span class="nav-icon" aria-hidden="true">♫</span>
+                        <span class="nav-label">Faixas</span>
+                    </button>
+                    <button id="albumsBtn" class="nav-item" type="button">
+                        <span class="nav-icon" aria-hidden="true">▦</span>
+                        <span class="nav-label">Álbuns</span>
+                    </button>
+                    <button id="queueBtn" class="nav-item" type="button">
+                        <span class="nav-icon" aria-hidden="true">≡</span>
+                        <span class="nav-label">Fila de reprodução</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="selectFolder" class="select-folder-button" type="button">
+                    <span aria-hidden="true">＋</span>
+                    <span class="nav-label">Adicionar pasta</span>
+                </button>
+                <p class="sidebar-caption">Sua biblioteca. Seu espaço.</p>
+            </div>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content" id="mainContent">
+            <header class="topbar">
+                <div class="page-heading">
+                    <p class="eyebrow">SUA CENTRAL MULTIMÍDIA</p>
+                    <h1>Visão geral</h1>
+                </div>
+
+                <div class="topbar-actions">
+                    <label class="search-box" for="search">
+                        <span aria-hidden="true">⌕</span>
+                        <input
+                            id="search"
+                            type="search"
+                            placeholder="Pesquisar músicas..."
+                            autocomplete="off"
+                        >
+                    </label>
+                    <button class="icon-button" id="settingsButton" type="button" aria-label="Configurações" title="Configurações">
+                        ⚙
+                    </button>
+                </div>
+            </header>
+
+            <!-- DASHBOARD INICIAL -->
+            <section class="dashboard-view" id="dashboardView" aria-labelledby="dashboardTitle">
+                <section class="welcome-panel">
+                    <div class="welcome-copy">
+                        <p class="eyebrow">BEM-VINDO AO SONICVAULT</p>
+                        <h2 id="dashboardTitle">Tudo o que você gosta.<br>Em um só lugar.</h2>
+                        <p class="welcome-description">
+                            Explore sua coleção de músicas e, em breve, suas leituras e vídeos.
+                        </p>
+                        <button class="primary-action" type="button" data-nav="music">
+                            Explorar biblioteca <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                    <div class="welcome-art" aria-hidden="true">
+                        <span class="art-orbit art-orbit-one"></span>
+                        <span class="art-orbit art-orbit-two"></span>
+                        <span class="art-symbol">SV</span>
+                    </div>
+                </section>
+
+                <section class="dashboard-section" aria-labelledby="libraryOverviewTitle">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">SEU CONTEÚDO</p>
+                            <h2 id="libraryOverviewTitle">Sua biblioteca</h2>
+                        </div>
+                    </div>
+
+                    <div class="collection-grid">
+                        <article class="collection-card collection-music">
+                            <div class="collection-art" aria-hidden="true">♫</div>
+                            <div class="collection-copy">
+                                <h3>Músicas</h3>
+                                <p>Sua coleção de áudio</p>
+                            </div>
+                            <span class="collection-arrow" aria-hidden="true">↗</span>
+                        </article>
+
+                        <article class="collection-card collection-manga">
+                            <div class="collection-art" aria-hidden="true">▤</div>
+                            <div class="collection-copy">
+                                <h3>Mangás</h3>
+                                <p>Leitura em um só lugar</p>
+                                <span class="coming-soon">Em desenvolvimento</span>
+                            </div>
+                            <span class="collection-arrow" aria-hidden="true">↗</span>
+                        </article>
+
+                        <article class="collection-card collection-video">
+                            <div class="collection-art" aria-hidden="true">▷</div>
+                            <div class="collection-copy">
+                                <h3>Vídeos</h3>
+                                <p>Integração com YouTube</p>
+                                <span class="coming-soon">Em desenvolvimento</span>
+                            </div>
+                            <span class="collection-arrow" aria-hidden="true">↗</span>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dashboard-section showcase-section" aria-labelledby="showcaseTitle">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">EM DESTAQUE</p>
+                            <h2 id="showcaseTitle">Descubra sua coleção</h2>
+                        </div>
+                    </div>
+                    <div class="showcase-placeholder">
+                        <span class="showcase-placeholder-icon" aria-hidden="true">✧</span>
+                        <p>Suas capas e coleções aparecerão aqui.</p>
+                        <span>Adicione uma pasta de músicas para começar.</span>
+                    </div>
+                </section>
+            </section>
+
+            <!-- BIBLIOTECA: IDs preservados para compatibilidade com app.js -->
+            <section class="music-library" id="musicLibrary" aria-labelledby="musicLibraryTitle">
+                <div class="section-heading library-heading">
+                    <div>
+                        <p class="eyebrow">COLEÇÃO DE ÁUDIO</p>
+                        <h2 id="musicLibraryTitle">Biblioteca musical</h2>
+                    </div>
+                </div>
+
+                <div id="playlist" class="playlist" aria-label="Lista de músicas"></div>
+                <div id="albums" class="albums" aria-label="Álbuns"></div>
+                <div id="queue" class="playlist" aria-label="Fila de reprodução" style="display: none;"></div>
+            </section>
+        </main>
+
+        <!-- PLAYER PERSISTENTE -->
+        <footer class="now-playing" aria-label="Controles do player">
+            <div class="now-playing-track">
+                <img
+                    id="cover"
+                    class="now-playing-cover"
+                    src="https://placehold.co/96x96/24212f/f4f4f5?text=SV"
+                    alt="Capa do álbum"
+                >
+                <div class="now-playing-info">
+                    <h2 id="title">Nenhuma música</h2>
+                    <p id="artist">Escolha uma pasta</p>
+                </div>
+            </div>
+
+            <div class="player-center">
+                <div class="player-controls">
+                    <button id="shuffle" class="player-button" type="button" aria-label="Modo aleatório" title="Modo aleatório">⤨</button>
+                    <button id="prev" class="player-button" type="button" aria-label="Música anterior" title="Música anterior">|◀</button>
+                    <button id="play" class="player-button play-button" type="button" aria-label="Reproduzir" title="Reproduzir">▶</button>
+                    <button id="next" class="player-button" type="button" aria-label="Próxima música" title="Próxima música">▶|</button>
+                    <button id="repeat" class="player-button" type="button" aria-label="Repetir" title="Repetir">⟲</button>
+                </div>
+
+                <div class="progress-container">
+                    <span id="currentTime">0:00</span>
+                    <input id="progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso da música">
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+
+            <div class="player-extra-controls">
+                <button id="pipButton" class="player-button pip-button" type="button" title="Abrir mini player">Mini player</button>
+                <button id="volumeBtn" class="player-button volume-button" type="button" aria-label="Silenciar volume" title="Silenciar volume">🔊</button>
+                <input id="volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+            </div>
+        </footer>
+    </div>
+
+    <audio id="audio" preload="metadata"></audio>
+</body>
+</html>
